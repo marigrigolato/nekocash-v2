@@ -1,0 +1,15 @@
+
+.root {
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  background-color: darkgray;
+}
+
+.item {
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,122 @@
+
+.section {
+  flex: 1;
+  height: 100%;
+}
+
+.container {
+  color: rgb(255, 255, 255);
+  background: linear-gradient(to right, #de4313, #fec163);
+}
+
+.items {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 31px 24px;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.card span {
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.main {
+  margin: auto;
+  max-width: 1200px;
+}
+
+.content {
+  display: flex;
+  margin-top: 1em;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  background-color: #fff;
+}
+
+input {
+  margin: 0.4rem;
+}
+
+.table {
+  padding: 1rem 0 2rem 1rem;
+}
+
+.model {
+  margin-top: 1.6rem;
+}
+
+.transaction {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+}
+
+.date, .currency {
+  color: #a0a0a0;
+  font-size: .8rem;
+}
+
+.currency {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 500;
+}
+
+.description, .amount {
+  padding: 1.2rem 6rem 1.1rem; /*ver esse padding horizontal*/
+  color: #404040;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1rem;
+}
+
+.descriptionInvalid, .amountInvalid {
+  padding: 1.2rem 6rem 1.1rem;
+  /* color: #de071c; */
+  color: #a61010;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1rem;
+}
+
+.amount {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tags {
+  padding: 0 15px;
+}
+
+.tag {
+  display: inline-block;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  margin: 0.438em 0.4em 0.4em 0;
+  color: #404040;
+  background: rgb(253, 236, 200);
+  border-radius: 0.2em;
+}

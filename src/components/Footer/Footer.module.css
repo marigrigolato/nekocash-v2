@@ -1,0 +1,33 @@
+
+.root {
+  margin-top: 6em;
+  padding: 0px 80px 32px 80px;
+  font-weight: 300;
+  color: #555555;
+}
+
+.contents {
+  position: relative;
+  border-top: 1px solid #ccc;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: -4.75em;
+  height: 3.5em;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.25em;
+  padding-bottom: 1.25em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+.copyright {
+  margin-top: 0.5em;
+}
