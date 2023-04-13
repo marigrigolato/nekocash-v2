@@ -13,30 +13,30 @@ const Footer = () => {
           <div className={styles['footer-copyright']}>
             <p>Copyright © 2023 NekoApp Inc. Todos os direitos reservados.</p>
           </div>
-          <div class={styles['social-icons']}>
+          <div className={styles['social-icons']}>
             <p>Siga-nos</p>
-            <ul class={styles['social-icons_list']}>
-              <li class={styles['social-icons_item']}>
+            <ul className={styles['social-icons_list']}>
+              <li className={styles['social-icons_item']}>
                 <a href="https://www.facebook.com/joicemarina" target="_blank" rel="noopener noreferrer">
                   <FaFacebook color='#000' />
                 </a>
               </li>
-              <li class={styles['social-icons_item']}>
+              <li className={styles['social-icons_item']}>
                 <a href="https://twitter.com/marigrigolato" target="_blank" rel="noopener noreferrer">
                   <FaTwitter color='#000' />
                 </a>
               </li>
-              <li class={styles['social-icons_item']}>
+              <li className={styles['social-icons_item']}>
                 <a href="https://www.instagram.com/marigrigolato/" target="_blank" rel="noopener noreferrer">
                   <FaInstagram color='#000' />
                 </a>
               </li>
-              <li class={styles['social-icons_item']}>
+              <li className={styles['social-icons_item']}>
                 <a href="https://www.linkedin.com/in/joice-grigolato/" target="_blank" rel="noopener noreferrer">
                   <FaLinkedin color='#000' />
                 </a>
               </li>
-              <li class={styles['social-icons_item']}>
+              <li className={styles['social-icons_item']}>
                 <a href="https://github.com/marigrigolato" target="_blank" rel="noopener noreferrer">
                   <FaGithub color='#000' />
                 </a>
