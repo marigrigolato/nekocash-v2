@@ -1,12 +1,11 @@
 
-.root {
-  margin-top: 6em;
-  padding: 0px 80px 32px 80px;
+.footer-contents {
+  padding: 6em 3em 2em;
   font-weight: 300;
   color: #555555;
 }
 
-.contents {
+.footer-column {
   position: relative;
   border-top: 1px solid #ccc;
 }
@@ -28,6 +27,23 @@
   padding-right: 0.75em;
 }
 
-.copyright {
+.footer-copyright, .social-icons {
   margin-top: 0.5em;
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-icons_item {
+  margin-left: 0.9em;
+}
+
+.social-icons_list {
+  display: flex;
+  list-style: none;
+}
+
+footer p {
+  font-size: 1em;
 }
