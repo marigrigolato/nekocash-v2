@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './Footer.module.css';
 import Logo from './assets/Logo';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';

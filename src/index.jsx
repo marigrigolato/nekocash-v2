@@ -5,17 +5,6 @@ import App from './App';
 import Home from './pages/Home/Home';
 import Transactions from './pages/Transactions/Transactions';
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <Home />,
-//   },
-//   {
-//     path: 'transactions',
-//     element: <Transactions />,
-//   }
-// ]);
-
 const router = createBrowserRouter([
   {
     path: '/',

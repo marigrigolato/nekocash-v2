@@ -1,15 +1,21 @@
 
-.root {
-  margin-bottom: 20px;
+.header {
+  display: flex;
   padding: 10px 10px;
-  background-color: darkgray;
+  height: 64px;
+  background-color: #fff;
 }
 
 .item {
+  display: flex;
   align-items: center;
-  justify-content: center;
   padding: 10px 10px;
   text-transform: uppercase;
   text-decoration: none;
   color: inherit;
+}
+
+.item:hover {
+  color: #f7681c;
+  /* color: #FF6208C9; */
 }
