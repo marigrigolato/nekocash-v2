@@ -1,19 +1,47 @@
 
 .section {
   flex: 1;
-  height: 100%;
+  height: calc(100% - 110px - 110px);
 }
 
-.container {
+.navbar-months {
+  display: flex;
+  position: relative;
+  height: 6.4rem;
   color: rgb(255, 255, 255);
   background: linear-gradient(to right, #de4313, #fec163);
 }
 
-.items {
-  display: flex;
+.arrow-button {
+  width: 32px;
+  height: 100%;
+  color: rgb(255, 255, 255);
+  opacity: 0.7;
+  background-color: rgba(255,255,255,0);
+  border: none;
+  cursor: pointer;
 }
 
-.card {
+.bt-next {
+  position: absolute;
+  right: 0;
+}
+
+.container {
+  display: flex;
+  position: absolute;
+  left: 32px;
+  right: 32px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.contents {
+  display: flex;
+  align-items: center;
+}
+
+.items-contents {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,88 +51,145 @@
   opacity: 0.7;
 }
 
-.card span {
+.items-contents span {
   font-weight: 400;
   font-size: 0.75rem;
 }
 
-.card:hover {
+.items-contents:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-h3 {
+.items-contents h3 {
   font-weight: 500;
   font-size: 1.2rem;
 }
 
+/* ver nomes da classes */
 .main {
+  display: flex;
   margin: auto;
   max-width: 1200px;
+  height: 100%;
 }
 
 .content {
   display: flex;
-  margin-top: 1em;
+  margin: 1em 0 1.4em;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 32px;
   background-color: #fff;
 }
 
-input {
-  margin: 0.4rem;
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.7rem;
+}
+
+.value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 4.5rem;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: #555555;
+  color: #fff;
+}
+
+.select {
+  width: 250px;
+  margin: 0.7rem;
+}
+
+.button {
+  font-weight: 400;
+  background-color: #fff;
+  padding: 1.2rem;
+  margin: 0rem 0.7rem 0.7rem 0.7rem;
+  border-color: #555555;
+  border-radius: 4px;
+  border-width: 1px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #555555;
+  color: #fff;
+}
+
+.transactions {
+  max-width: 100%;
+  padding: 1rem 0 2rem 1rem;
+  overflow: auto;
 }
 
 .table {
-  padding: 1rem 0 2rem 1rem;
+  max-height: 400px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.model {
-  margin-top: 1.6rem;
+th, td {
+  padding: 12px 15px;
 }
 
-.transaction {
-  display: flex;
-  align-items: center;
-  border-top: 1px solid #ddd;
+th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.8rem;
 }
 
-.date, .currency {
+th, .date{
   color: #a0a0a0;
-  font-size: .8rem;
 }
 
 .currency {
-  display: flex;
-  justify-content: flex-end;
-  font-weight: 500;
+  text-align: right;
+  margin-right: 0.8rem;
 }
 
-.description, .amount {
-  padding: 1.2rem 6rem 1.1rem; /*ver esse padding horizontal*/
+.date {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.amount, .amount-invalid {
+  text-align: right;
+}
+
+.transaction {
+  border-bottom: 1px solid #ddd;
+}
+
+.description, .amount, .description-invalid, .amount-invalid {
   color: #404040;
   font-weight: 400;
   font-size: 0.9rem;
   line-height: 1rem;
 }
 
-.descriptionInvalid, .amountInvalid {
-  padding: 1.2rem 6rem 1.1rem;
-  /* color: #de071c; */
-  color: #a61010;
-  font-weight: 400;
-  font-size: 0.9rem;
-  line-height: 1rem;
+.description, .amount {
+  color: #404040;
 }
 
-.amount {
-  display: flex;
-  justify-content: flex-end;
+.description, .description-invalid {
+  padding: 0.75rem 5.5rem 0.75rem 0.938rem;
+}
+
+.description-invalid, .amount-invalid {
+  color: #de4313;
 }
 
 .tags {
@@ -119,4 +204,13 @@ input {
   color: #404040;
   background: rgb(253, 236, 200);
   border-radius: 0.2em;
+}
+
+.edit, .delete {
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+  color: #404040;
 }
