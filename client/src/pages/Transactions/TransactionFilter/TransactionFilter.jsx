@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Select from 'react-select'
-import TextField from '../../components/TextField/TextField';
-import YesOrNoRadioButton from '../../components/RadioButton/YesOrNoRadioButton';
+import TextField from '../../../components/TextField/TextField';
+import YesOrNoRadioButton from '../../../components/RadioButton/YesOrNoRadioButton';
 import styles from './TransactionFilter.module.css';
 
 const TransactionFilter = ({ appliedFilter, asyncTransactions, onAppliedFilterChange }) => {

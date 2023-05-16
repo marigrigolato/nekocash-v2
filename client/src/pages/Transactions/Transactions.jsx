@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import InvoiceMonthSummary from '../../components/InvoiceMonthSummary/InvoiceMonthSummary';
-import TransactionFilter from '../../components/TransactionFilter/TransactionFilter';
+import InvoiceMonthSummary from './InvoiceMonthSummary/InvoiceMonthSummary';
+import TransactionFilter from './TransactionFilter/TransactionFilter';
 import styles from './Transactions.module.css';
 
 const INITIAL_APPLIED_FILTER = {
