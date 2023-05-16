@@ -16,6 +16,7 @@ const INITIAL_APPLIED_FILTER = {
 const Transactions = () => {
 
   const [ appliedFilter, setAppliedFilter ] = useState(INITIAL_APPLIED_FILTER);
+  const [ selectedInvoiceMonth, setSelectedInvoiceMonth ] = useState(null);
   const [ invoices, setInvoices ] = useState(null);
   const [ asyncTransactions, setAsyncTransactions ] = useState(null);
 
@@ -25,31 +26,33 @@ const Transactions = () => {
       .then(setInvoices);
   }, []);
 
-  const fetchInvoiceTransactions = useCallback(invoiceMonthYear => {
+  const fetchInvoiceTransactions = useCallback(() => {
     const tagIds = appliedFilter.tags.map(tag => tag.id);
-    fetch(`/transactions?year_month=${invoiceMonthYear}&date=${appliedFilter.date}&description=${appliedFilter.description}&tags=${tagIds}&value=${appliedFilter.value}&isPlanned=${appliedFilter.isPlanned}`)
+    fetch(`/transactions?year_month=${selectedInvoiceMonth}&date=${appliedFilter.date}&description=${appliedFilter.description}&tags=${tagIds}&value=${appliedFilter.value}&isPlanned=${appliedFilter.isPlanned}`)
       .then(response => response.json())
       .then(data => {
-        setAsyncTransactions({ status: 'loaded', data: data, year_month: invoiceMonthYear });
+        setAsyncTransactions({ status: 'loaded', data: data });
       });
-  }, [ appliedFilter ]);
+  }, [ appliedFilter, selectedInvoiceMonth ]);
 
   useEffect(() => {
-    if (invoices === null) {
-      setAsyncTransactions(null);
-      return;
-    }
-    if (invoices.length > 0) {
+    if (invoices !== null && invoices.length > 0 && selectedInvoiceMonth === null) {
       const lastInvoice = invoices[invoices.length - 1];
-      fetchInvoiceTransactions(lastInvoice.year_month);
+      setSelectedInvoiceMonth(lastInvoice.year_month);
     }
-  }, [ invoices, fetchInvoiceTransactions ]);
+  }, [ invoices, selectedInvoiceMonth ]);
+
+  useEffect(() => {
+    if (selectedInvoiceMonth !== null) {
+      fetchInvoiceTransactions();
+    }
+  }, [ fetchInvoiceTransactions, selectedInvoiceMonth ]);
 
   return (
     <section className={styles['section']}>
       <InvoiceMonthSummary
         value={invoices}
-        onMonthSelected={fetchInvoiceTransactions}
+        onMonthSelected={setSelectedInvoiceMonth}
       />
       <div className={styles['main']}>
         <div className={styles['content']}>
