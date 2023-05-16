@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
-import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
+import React, { useState, useEffect } from 'react';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import styles from './Transactions.module.css';
@@ -25,12 +23,6 @@ const Transactions = () => {
   const [ appliedFilter, setAppliedFilter ] = useState(null);
   const [ asyncTransactions, setAsyncTransactions ] = useState(null);
   const [ invoices, setInvoices ] = useState(null)
-  const scrollRef = useRef(null);
-
-  useEffect(() => {
-    const container = scrollRef.current;
-    container.scrollLeft = container.scrollWidth - container.clientWidth;
-  }, [ invoices ] );
 
   const amount = asyncTransactions && asyncTransactions.data.reduce((total, transaction) => {
     return total + transaction.value;
@@ -78,35 +70,10 @@ const Transactions = () => {
 
   return (
     <section className={styles['section']}>
-      <div className={styles['navbar-months']}>
-        <button
-          className={styles['arrow-button']}
-          onClick={() => {
-            scrollRef.current.scrollLeft -= 200;
-          }}
-        >
-          <KeyboardArrowLeftOutlinedIcon />
-        </button>
-        <div
-          className={styles['container']}
-          ref={scrollRef}
-        >
-          <div className={styles['contents']}>
-            <InvoiceMonthSummary
-              value={invoices}
-              onChange={data => { setAsyncTransactions(data) }}
-            />
-          </div>
-        </div>
-        <button
-          className={`${styles['arrow-button']} ${styles['bt-next']}`}
-          onClick={() => {
-            scrollRef.current.scrollLeft += 200;
-          }}
-        >
-          <KeyboardArrowRightOutlinedIcon />
-        </button>
-      </div>
+      <InvoiceMonthSummary
+        value={invoices}
+        onChange={data => { setAsyncTransactions(data) }}
+      />
       <div className={styles['main']}>
         <div className={styles['content']}>
           <div className={styles['form']}>

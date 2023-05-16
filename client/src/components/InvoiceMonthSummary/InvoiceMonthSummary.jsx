@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import styles from './InvoiceMonthSummary.module.css';
 
 const InvoiceMonthSummary = ({ value, onChange }) => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    container.scrollLeft = container.scrollWidth - container.clientWidth;
+  }, [ value ] );
 
   function formatDate(date) {
     const [year, month] = date.split('-');
@@ -33,9 +41,32 @@ const InvoiceMonthSummary = ({ value, onChange }) => {
   );
 
   return (
-    <>
-      {renderedItems}
-    </>
+    <div className={styles['navbar-months']}>
+      <button
+        className={styles['arrow-button']}
+        onClick={() => {
+          scrollRef.current.scrollLeft -= 200;
+        }}
+      >
+        <KeyboardArrowLeftOutlinedIcon />
+      </button>
+      <div
+        className={styles['container']}
+        ref={scrollRef}
+      >
+        <div className={styles['contents']}>
+          {renderedItems}
+        </div>
+      </div>
+      <button
+        className={`${styles['arrow-button']} ${styles['bt-next']}`}
+        onClick={() => {
+          scrollRef.current.scrollLeft += 200;
+        }}
+      >
+        <KeyboardArrowRightOutlinedIcon />
+      </button>
+    </div>
   );
 }
 
