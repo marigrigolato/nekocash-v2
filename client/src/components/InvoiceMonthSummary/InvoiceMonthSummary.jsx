@@ -3,7 +3,7 @@ import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeft
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import styles from './InvoiceMonthSummary.module.css';
 
-const InvoiceMonthSummary = ({ value, onChange }) => {
+const InvoiceMonthSummary = ({ value, onMonthSelected }) => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
@@ -27,13 +27,7 @@ const InvoiceMonthSummary = ({ value, onChange }) => {
     <div
       key={item.year_month}
       className={styles['items-contents']}
-      onClick={() => 
-        fetch(`/invoice?year_month=${item.year_month}`)
-          .then(res => res.json())
-          .then(data => {
-            onChange({ status: 'loaded', data: data, year_month: item.year_month });
-          })
-        }
+      onClick={() => onMonthSelected(item.year_month)}
     >
       <h3>{formatDate(item.year_month)}</h3>
       <span>{formatCurrency(item.amount)}</span>

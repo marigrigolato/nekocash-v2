@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import styles from './Transactions.module.css';
@@ -38,21 +38,25 @@ const Transactions = () => {
     return allTags;
   }, []);
 
+  const fetchInvoiceTransactions = useCallback(invoiceMonthYear => {
+    fetch(`/transactions?year_month=${invoiceMonthYear}`)
+      .then(response => response.json())
+      .then(data => {
+        setAsyncTransactions({ status: 'loaded', data: data, year_month: invoiceMonthYear });
+      });
+  }, []);
+
   useEffect(() => {
     fetch('/invoices')
       .then(response => response.json())
       .then(data => {
-        setInvoices(data)
+        setInvoices(data);
         if (data.length > 0) {
           const lastInvoice = data[data.length - 1];
-          fetch(`/invoice?year_month=${lastInvoice.year_month}`)
-          .then(response => response.json())
-          .then(data => {
-            setAsyncTransactions({ status: 'loaded', data: data, year_month: lastInvoice.year_month });
-          });
+          fetchInvoiceTransactions(lastInvoice.year_month);
         }
       });
-  }, [] );
+  }, [ fetchInvoiceTransactions ] );
 
   useEffect(() => {
     if(appliedFilter ===  null) {
@@ -72,7 +76,7 @@ const Transactions = () => {
     <section className={styles['section']}>
       <InvoiceMonthSummary
         value={invoices}
-        onChange={data => { setAsyncTransactions(data) }}
+        onMonthSelected={fetchInvoiceTransactions}
       />
       <div className={styles['main']}>
         <div className={styles['content']}>

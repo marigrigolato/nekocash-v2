@@ -5,14 +5,12 @@ import psycopg2.extras
 import locale
 from flask import Flask, request, jsonify
 from invoices_summary import invoices_bp
-from invoice import invoice_bp
 
 dotenv.load_dotenv(dotenv.find_dotenv())
 locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 app = Flask(__name__)
 app.register_blueprint(invoices_bp, url_prefix='/invoices')
-app.register_blueprint(invoice_bp, url_prefix='/invoice')
 
 
 def get_db_connection():
@@ -43,7 +41,7 @@ def get_transactions():
   if date:
     insert_query += ' AND date = %(date)s'
   if description:
-    insert_query += ' AND description = %(description)s'
+    insert_query += ' AND description ilike %(description)s'
   if tags:
     tags = tuple(tags.split(','))
     insert_query += ' AND (SELECT COUNT(1) FROM transaction_tag tt WHERE id_transaction = tx.id AND tt.id_tag IN %(tags)s) > 0'
@@ -53,7 +51,9 @@ def get_transactions():
   if is_planned:
     insert_query += ' AND is_planned = %(is_planned)s'
 
-  cur.execute(insert_query, { 'year_month': year_month,'date': date, 'description': description, 'tags': tags, 'value': value, 'is_planned': is_planned })
+  insert_query += ' ORDER BY tx.date;'
+
+  cur.execute(insert_query, { 'year_month': year_month,'date': date, 'description': f'%{description}%', 'tags': tags, 'value': value, 'is_planned': is_planned })
   registers = cur.fetchall()
 
   filtered_transactions = []
