@@ -1,0 +1,88 @@
+
+.transactions {
+  max-width: 100%;
+  padding: 1rem 0 2rem 1rem;
+  overflow: auto;
+}
+
+.table {
+  max-height: 400px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+th, .date{
+  color: #a0a0a0;
+}
+
+.currency {
+  text-align: right;
+  margin-right: 0.8rem;
+}
+
+.date {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.amount, .amount-invalid {
+  text-align: right;
+}
+
+.transaction {
+  border-bottom: 1px solid #ddd;
+}
+
+.description, .amount, .description-invalid, .amount-invalid {
+  color: #404040;
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 1rem;
+}
+
+.description, .amount {
+  color: #404040;
+}
+
+.description, .description-invalid {
+  padding: 0.75rem 5.5rem 0.75rem 0.938rem;
+}
+
+.description-invalid, .amount-invalid {
+  color: #de4313;
+}
+
+.tags {
+  padding: 0 15px;
+}
+
+.tag {
+  display: inline-block;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  margin: 0.438em 0.4em 0.4em 0;
+  color: #404040;
+  background: rgb(253, 236, 200);
+  border-radius: 0.2em;
+}
+
+.edit, .delete {
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+  color: #404040;
+}
