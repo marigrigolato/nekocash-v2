@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Select from 'react-select'
 import TextField from '../../components/TextField/TextField';
 import YesOrNoRadioButton from '../../components/RadioButton/YesOrNoRadioButton';
@@ -8,19 +8,25 @@ const TransactionFilter = ({ appliedFilter, asyncTransactions, onAppliedFilterCh
 
   const [ filter, setFilter ] = useState(appliedFilter);
 
-  const amount = asyncTransactions && asyncTransactions.data.reduce((total, transaction) => {
-    return total + transaction.value;
-  }, 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const amount = useMemo(() => {
+    if (!asyncTransactions) return null;
+    return asyncTransactions.data.reduce((total, transaction) => {
+      return total + transaction.value;
+    }, 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }, [ asyncTransactions ]);
 
-  const tags = asyncTransactions && asyncTransactions.data.reduce((allTags, transaction) => {
-    transaction.tags.forEach(tag => {
-      const tagExists = allTags.some(existingTag => existingTag.id === tag.id);
-      if (!tagExists) {
-        allTags.push(tag);
-      }
-    });
-    return allTags;
-  }, []);
+  const tags = useMemo(() => {
+    if (!asyncTransactions) return null;
+    return asyncTransactions.data.reduce((allTags, transaction) => {
+      transaction.tags.forEach(tag => {
+        const tagExists = allTags.some(existingTag => existingTag.id === tag.id);
+        if (!tagExists) {
+          allTags.push(tag);
+        }
+      });
+      return allTags;
+    }, []);
+  });
 
   return (
     <div className={styles['form']}>
