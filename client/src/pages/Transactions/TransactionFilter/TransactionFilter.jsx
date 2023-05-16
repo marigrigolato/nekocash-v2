@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Select from 'react-select'
 import TextField from '../../../components/TextField/TextField';
 import YesOrNoRadioButton from '../../../components/RadioButton/YesOrNoRadioButton';
@@ -7,6 +7,10 @@ import styles from './TransactionFilter.module.css';
 const TransactionFilter = ({ appliedFilter, asyncTransactions, onAppliedFilterChange }) => {
 
   const [ filter, setFilter ] = useState(appliedFilter);
+
+  useEffect(() => {
+    setFilter(appliedFilter);
+  }, [ appliedFilter ]);
 
   const amount = useMemo(() => {
     if (!asyncTransactions) return null;
@@ -26,7 +30,7 @@ const TransactionFilter = ({ appliedFilter, asyncTransactions, onAppliedFilterCh
       });
       return allTags;
     }, []);
-  });
+  }, [ asyncTransactions ]);
 
   return (
     <div className={styles['form']}>
@@ -50,8 +54,7 @@ const TransactionFilter = ({ appliedFilter, asyncTransactions, onAppliedFilterCh
           getOptionLabel={option => option.name}
           getOptionValue={option => option.id}
           className={styles['select']}
-          // value={filter.tags.map(x => ({ id: x.id, name: x.name }))}
-          // value={filter.tags.map(x => ({ tag: x }))}
+          value={filter.tags}
           onChange={options => {
             const selectedTags = options ? options.map(option => ({ id: option.id, name: option.name })) : [];
             setFilter({ ...filter, tags: selectedTags });

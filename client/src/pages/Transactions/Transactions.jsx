@@ -4,17 +4,17 @@ import TransactionFilter from './TransactionFilter/TransactionFilter';
 import TransactionTable from './TransactionTable/TransactionTable';
 import styles from './Transactions.module.css';
 
-const INITIAL_APPLIED_FILTER = {
+const makeInitialAppliedFilter = () => ({
   date: '',
   description: '',
   tags: [],
   value: '',
   isPlanned: true
-};
+});
 
 const Transactions = () => {
 
-  const [ appliedFilter, setAppliedFilter ] = useState(INITIAL_APPLIED_FILTER);
+  const [ appliedFilter, setAppliedFilter ] = useState(makeInitialAppliedFilter);
   const [ selectedInvoiceMonth, setSelectedInvoiceMonth ] = useState(null);
   const [ invoices, setInvoices ] = useState(null);
   const [ asyncTransactions, setAsyncTransactions ] = useState(null);
@@ -51,7 +51,10 @@ const Transactions = () => {
     <section className={styles['section']}>
       <InvoiceMonthSummary
         value={invoices}
-        onMonthSelected={setSelectedInvoiceMonth}
+        onMonthSelected={selectedInvoiceMonth => {
+          setAppliedFilter(makeInitialAppliedFilter());
+          setSelectedInvoiceMonth(selectedInvoiceMonth);
+        }}
       />
       <div className={styles['main']}>
         <div className={styles['content']}>
